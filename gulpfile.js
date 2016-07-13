@@ -4,6 +4,7 @@ const browserSync = require('browser-sync').create();
 const gulp = require('gulp');
 const browserify = require('browserify');
 const plumber = require('gulp-plumber');
+const notify = require('gulp-notify');
 
 const promise = require('es6-promise');
 const autoprefixer = require('autoprefixer');
@@ -19,9 +20,9 @@ const mqpacker = require('css-mqpacker');
 const minifycss = require('gulp-cssnano');
 const sass = require('gulp-sass');
 
-const siteRoot = '_site';
-const cssFiles = '_css/**/*.?(s)css';
-const cssDest  = './_site/css';
+const siteRoot = './_site';
+const cssFiles = './_sass/**/*.scss';
+const cssDest  = './_site/css/';
 const jsFiles  = './js/**/*.js';
 const jsDest   = './_site/js/';
 const jsEntry  = './js/main.js';
@@ -31,7 +32,7 @@ gulp.task('fonts', () => {
         .pipe(gulp.dest('./_site/fonts/'));
 });
 
-gulp.task('javascript', () => {
+gulp.task('js', () => {
     // set up the browserify instance on a task basis
     var b = browserify({
         entries: jsEntry,
@@ -53,7 +54,7 @@ gulp.task('javascript', () => {
 
 
 gulp.task('css', () => {
-  gulp.src(cssFiles)
+  gulp.src('./css/main.scss')
     .pipe(plumber(function (error) {
         handleError(error);
         this.emit('end');
@@ -67,10 +68,6 @@ gulp.task('css', () => {
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
     .pipe(gulp.dest(cssDest))
-  //gulp.src(cssFiles)
-    //.pipe(sass())
-    //.pipe(concat('all.css'))
-    //.pipe(gulp.dest('assets'));
 });
 
 gulp.task('jekyll', () => {
@@ -92,15 +89,29 @@ gulp.task('jekyll', () => {
 
 gulp.task('serve', () => {
   browserSync.init({
-    files: [siteRoot + '/**'],
+    files: [siteRoot + '/**', siteRoot + '/**/**'],
     port: 4000,
     server: {
       baseDir: siteRoot
     }
   });
 
-  gulp.watch(cssFiles, ['css']);
-  gulp.watch(jsFiles, ['javascript']);
+  gulp.watch(cssFiles, ['css-watch']);
+  gulp.watch(jsFiles, ['js-watch']);
+  //gulp.watch()
 });
 
+gulp.task('css-watch', ['css'], browserSync.reload);
+gulp.task('js-watch', ['js'], browserSync.reload);
+
+
 gulp.task('default', ['css', 'jekyll', 'serve']);
+
+function handleError(error) {
+    notify().write({
+        title: error.name,
+        subtitle: error.plugin,
+        message: error.messageOriginal
+    });
+    console.log(error);
+}

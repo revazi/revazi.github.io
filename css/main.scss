@@ -1,6 +1,6 @@
----
-# Only the main Sass file needs front matter (the dashes are enough)
----
+/*---*/
+/*# Only the main Sass file needs front matter (the dashes are enough)*/
+/*---*/
 @charset "utf-8";
 
 
@@ -43,11 +43,11 @@ $on-laptop:        800px;
     }
 }
 
-
+body {
+  color: black;
+}
 
 // Import partials from `sass_dir` (defaults to `_sass`)
-@import
-        "base",
-        "layout",
-        "syntax-highlighting"
-;
+@import "_sass/base";
+@import "_sass/layout";
+@import "_sass/syntax-highlighting";
