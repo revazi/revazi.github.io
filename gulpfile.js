@@ -52,7 +52,6 @@ gulp.task('js', () => {
         .pipe(gulp.dest(jsDest));
 });
 
-
 gulp.task('css', () => {
   gulp.src('./css/main.scss')
     .pipe(plumber(function (error) {
@@ -98,12 +97,10 @@ gulp.task('serve', () => {
 
   gulp.watch(cssFiles, ['css-watch']);
   gulp.watch(jsFiles, ['js-watch']);
-  //gulp.watch()
 });
 
 gulp.task('css-watch', ['css'], browserSync.reload);
 gulp.task('js-watch', ['js'], browserSync.reload);
-
 
 gulp.task('default', ['css', 'jekyll', 'serve']);
 
