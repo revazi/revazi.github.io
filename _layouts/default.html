@@ -1,41 +1,14 @@
 <!DOCTYPE html>
 <html>
-
   {% include head.html %}
-
   <body>
-
     {% include header.html %}
-
     <div class="page-content">
       <div class="wrapper">
-        {% comment %}<h1 data-hello=""> Hello!</h1>{% endcomment %}
-        {% comment %}<p>{% endcomment %}
-          {% comment %}This is my webpage and yes it looks awfull, but hey give it a five minutes...{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}Still nothing?{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}Well that's because I'm lazy as f*&k to think about a great layout that will display my skills and experience beautifully enough for the visitor and potential employers, and here comes the imagination...{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}Imagine the webpage you liked the most and think about it, nice hope it's not some kind of porn page, that'd be awkward... now imagine that on the main image it's me smiling for you, below my image it says "Software Developer"(meh), this is what I do.{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}<br/>{% endcomment %}
-          {% comment %}After that introductory section you need to know about my experience so here comes the "Portfolio" section with the projects I worked on and few bragging words about them, feedbacks from previous clients and all that boring stuff.{% endcomment %}
-        {% comment %}</p>{% endcomment %}
         {{ content }}
       </div>
     </div>
-
     {% include footer.html %}
-
     <script type="text/javascript" src="{{ "/js/main.js" | prepend: site.baseurl }}"></script>
   </body>
-
 </html>
