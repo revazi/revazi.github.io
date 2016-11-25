@@ -23,7 +23,7 @@ $(document).ready(function(){
     duration: 1.8,
     transition: 'ease-in-out',
     loopCount: 3,
-    strokeColor: '#fff'
+    strokeColor: '#9aff83'
   });
 });
 
