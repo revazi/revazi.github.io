@@ -6,7 +6,6 @@ p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
     margin: 0;
     padding: 0;
-
 }
 
 
@@ -14,6 +13,11 @@ dl, dd, ol, ul, figure {
 /**
  * Basic styling
  */
+html {
+  min-height: 100%;
+  background: $body-border-color;
+}
+
 body {
     font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
     color: $text-color;
@@ -24,8 +28,53 @@ body {
     -o-font-feature-settings: "kern" 1;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
-}
+    &.withBorder {
+      border-left: ($spacing-unit*5)/6 solid $body-border-color;
+      border-right: ($spacing-unit*5)/6 solid $body-border-color;
+      padding: ($spacing-unit)*5/6 0;
+      /*padding: 0;*/
+      min-height: calc(100vh - #{($spacing-unit*5/6)});
+      position: relative;
+      transition: border +" " + $frameTransition;
+      &:after, &:before {
+        content: "";
+        display: block;
+        /*display: none;*/
+        height: ($spacing-unit*5/6);
+        width: 100%;
+        background: $body-border-color;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: height + " " + $frameTransition;
+      }
+      &:after {
+        top: auto;
+        bottom: 0;
+      }
+      @include media-query($on-laptop) {
+        border-left: ($spacing-unit*2)/3 solid $body-border-color;
+        border-right: ($spacing-unit*2)/3 solid $body-border-color;
+        padding: ($spacing-unit)*2/3 0;
+        /*padding: 0;*/
+        min-height: calc(100vh - #{($spacing-unit*2)/3});
+        &:after, &:before {
+          height: ($spacing-unit*2)/3;
+        }
+      }
 
+      @include media-query($on-palm) {
+        border-left: $spacing-unit/3 solid $body-border-color;
+        border-right: $spacing-unit/3 solid $body-border-color;
+        padding: $spacing-unit/3 0;
+        min-height: calc(100vh - #{$spacing-unit/3});
+        &:after, &:before {
+          height: $spacing-unit/3;
+        }
+      }
+    }
+}
 
 
 /**
@@ -93,7 +142,6 @@ h1, h2, h3, h4, h5, h6 {
  */
 a {
     color: $brand-color;
-    color: green;
     text-decoration: none;
 
     &:visited {
@@ -188,8 +236,6 @@ pre {
     }
 }
 
-
-
 /**
  * Icons
  */
@@ -205,4 +251,23 @@ pre {
             fill: $grey-color;
         }
     }
+}
+
+
+.LoadingOverlay {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom: calc(50vh + 10rem) solid $body-border-color;
+  border-top: calc(50vh - 10rem) solid $body-border-color;
+  border-left: 50vw solid $body-border-color;
+  border-right: 50vw solid $body-border-color;
+  transition: border .3s ease;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  .loaded & {
+    border: 0px solid $body-border-color;
+  }
 }

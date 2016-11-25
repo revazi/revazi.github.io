@@ -1,0 +1,97 @@
+.Section {
+  display: block;
+  font-family: 'Bungee Inline', cursive;
+  font-family: 'Noticia Text', serif;
+  font-family: 'Sarala', sans-serif;
+  &-svgName {
+  }
+  &-svg {
+    &--name {
+      text-align: center;
+      margin: 2rem 0;
+      position: absolute;
+      left: 50%;
+      margin-left: -($animatedSvgHeight + 2rem);
+      top: 50%;
+      margin-top: -9.8rem;
+      transition: all + " " + $overlayTransition;
+      z-index: 10;
+      .loaded & {
+        top: 2rem;
+        margin-top: 0;
+        z-index: 0;
+      }
+      & .z-svg {
+        padding: 7rem 2rem;
+        /*border-radius: 50%;*/
+        background: $background-color;
+        transition: all + " " $overlayTransition;
+        .loaded & {
+          padding: 10rem 2rem 1rem;
+        }
+      }
+      &:before, &:after {
+        content: "";
+        display: none;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: $animatedSvgHeight solid white;
+        border-right: $animatedSvgHeight solid transparent;
+        left: 100%;
+        top: 0;
+        transition: border + " " + $overlayTransition;
+      }
+      &:after {
+        border: none;
+        border-top: $animatedSvgHeight solid white;
+        border-left: $animatedSvgHeight solid transparent;
+        left: -$animatedSvgHeight;
+      }
+    }
+    &--namePlaceholder {
+      height: 2*$animatedSvgHeight;
+    }
+  }
+  &--intro {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -10rem;
+    /*background: rgba(255,255,255, 0.6);*/
+    padding: 2rem;
+    color: white;
+    h1 {
+      text-transform: uppercase;
+      font-size: 50px;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+      /*color: $brand-color;*/
+      transition: all 0.3s ease;
+      font-family: 'Noticia Text';
+      @include media-query($on-palm) {
+        font-size: 30px;
+      }
+    }
+    h2 {
+      transition: all .3s ease;
+      @include media-query($on-palm) {
+        font-size: 18px;
+      }
+      /*color: $brand-secondary-color;*/
+    }
+    h4 {
+      /*color: white;*/
+      a {
+        font-family: "League-Gothic", Courier;
+      }
+    }
+  }
+}
+
+/*.loaded .Section.Section-svg--name*/
+.loaded .Section.Section-svg--name {
+  &:before, &:after {
+    border-top: 0px solid white;
+  }
+}

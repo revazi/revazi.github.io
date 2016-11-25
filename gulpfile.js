@@ -3,6 +3,7 @@ const browserSync = require('browser-sync').create();
 
 const gulp = require('gulp');
 const browserify = require('browserify');
+const babelify = require('babelify')
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 
@@ -37,7 +38,7 @@ gulp.task('js', () => {
     var b = browserify({
         entries: jsEntry,
         debug: true
-    });
+    }).transform(babelify, {presets: ["es2015", "react"]});
 
     return b.bundle()
         .pipe(plumber( (error) => {
@@ -47,7 +48,7 @@ gulp.task('js', () => {
         .pipe(source('main.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(jsDest));
 });
@@ -102,7 +103,7 @@ gulp.task('serve', () => {
 gulp.task('css-watch', ['css'], browserSync.reload);
 gulp.task('js-watch', ['js'], browserSync.reload);
 
-gulp.task('default', ['css', 'jekyll', 'serve']);
+gulp.task('default', ['js', 'css', 'jekyll', 'serve']);
 
 function handleError(error) {
     notify().write({
