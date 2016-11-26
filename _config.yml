@@ -11,7 +11,7 @@ email: revaz@zakala.me
 description: > # this means to ignore newlines until "baseurl:"
 repository: revazi/revazi.github.io
 
-baseurl: "/_site" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://zakala.me" # the base hostname & protocol for your site
 twitter_username: rzakala
 github_username: revazi
@@ -23,8 +23,6 @@ exclude:
   - package.json
   - node_modules
   - gulpfile.js
-  - css
   - _sass
-  - js
 include: ['_pages']
 gems: ['jekyll-github-metadata']
