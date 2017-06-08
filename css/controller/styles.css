@@ -1,0 +1,502 @@
+@font-face {
+    font-family: 'vt323';
+    src: url('fonts/vt323-regular-webfont.woff2') format('woff2'),
+    url('fonts/vt323-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotobold';
+    src: url('fonts/Roboto/roboto-bold-webfont.woff2') format('woff2'),
+    url('fonts/Roboto/roboto-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotolight';
+    src: url('fonts/Roboto/roboto-light-webfont.woff2') format('woff2'),
+    url('fonts/Roboto/roboto-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('fonts/Roboto/roboto-regular-webfont.woff2') format('woff2'),
+    url('fonts/Roboto/roboto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'robotothin';
+    src: url('fonts/Roboto/roboto-thin-webfont.woff2') format('woff2'),
+    url('fonts/Roboto/roboto-thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+green: #DFDD9A;
+red: #F38B85;
+yellow: #FDC47A;
+*/
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body * {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.Sequencer {
+    display: block;
+    position: relative;
+    max-width: 670px;
+    /*height: 400px;*/
+    top: 50px;
+    margin: 0 auto;
+    background: #232323;
+    background: #2f2f2f;
+    overflow: auto;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.Drumpads {
+    display: block;
+}
+
+.Drumpad-wrapper {
+    display: flex;
+    margin: 20px 0;
+}
+
+.Drumpad-wrapper > div {
+    flex: 0 0 50%;
+}
+
+.Drumpads-pad {
+    display: inline-block;
+    position: relative;
+    margin: 8px 10px;
+    /*background: white;*/
+    cursor: pointer;
+}
+
+.Sequencerpads {
+    margin: 20px 0;
+}
+
+.Sequencerpads ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Sequencerpads ul li:nth-child(4n) {
+    margin-right: 10px;
+    /*border-right: 1px solid white;*/
+    position: relative;
+}
+
+.Sequencerpads ul li:nth-child(4n):before {
+    content: '';
+    height: 18px;
+    width: 1px;
+    background: #fffcfd;
+    display: block;
+    position: absolute;
+    right: -15px;
+    top: 2px;
+}
+
+.Sequencerpads ul li:last-child {
+    margin-right: 0;
+}
+
+.Sequencerpads ul li:last-child:before {
+    display: none;
+}
+
+.Drumpads-pad span {
+    /*background: #e7f0f9;*/
+    /*box-shadow: 0 2px 0 #c8001a;*/
+    /*box-shadow: 1px 2px 6px #fffcfd;*/
+    /*width: 50px;*/
+    /*height: 50px;*/
+}
+
+.Drumpads-pad span, .Sequencerpads li, #filterType, .mainControl {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: #e7f0f9;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+    /*margin: 5px;*/
+    border: none;
+    -webkit-backface-visibility: hidden;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    /*-webkit-transition: .075s;*/
+    /*-moz-transition: .075s;*/
+    /*-ms-transition: .075s;*/
+    /*-o-transition: .075s;*/
+    /*transition: .075s;*/
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -ms-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+    /*box-shadow: 0 2px 0 #c8001a;*/
+    box-shadow: 1px 2px 4px #fffcfd;
+    outline: none;
+}
+
+.mainControl {
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+    background: #e7f0f9;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+    margin-top: 5px;
+    background: #a3df9a;
+    box-shadow: 1px 2px 4px #a3df9a;
+    position: relative;
+}
+
+.mainControl:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -5px;
+    top: 50%;
+    margin-top: -5px;
+}
+
+.mainControl.stop {
+    margin-left: 22px;
+    background: #F38B85;
+    box-shadow: 1px 2px 4px #F38B85;
+}
+
+.mainControl.start:before {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 10px solid #2f2f2f;
+    border-bottom: 5px solid transparent;
+}
+
+.mainControl.stop:before {
+    width: 10px;
+    height: 10px;
+    background: #2f2f2f;
+}
+
+.Drumpads-pad-title {
+    color: #fffcfd;
+    padding-top: 1px;
+    display: block;
+    font-family: robotoregular;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-shadow: 0px 1px 3px #DFDD9A;
+    text-align: center;
+}
+
+.Sequencerpads li {
+    display: inline-block;
+    background: #e7f0f9;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    box-shadow: 1px 2px 1px #fffcfd;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -ms-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.Sequencerpads li:focus, .Sequencerpads li:active, .Sequencerpads li.active {
+    box-shadow: 0px 1px 1px #F38B85;
+    background: #F38B85;
+}
+
+.Drumpads-pad span:focus, .Drumpads-pad span:active, .Drumpads-pad span.active, .Drumpads-pad.playing span {
+    box-shadow: 0px 1px 1px #F38B85;
+    background: #F38B85;
+}
+
+.Drumpads-pad.playing span {
+    box-shadow: 0px 1px 1px #DFDD9A;
+    background: #DFDD9A;
+}
+
+.Drumpads-pad.recording span {
+    box-shadow: 0px 1px 1px #F38B85;
+    background: #F38B85;
+}
+
+.drum-controls .row {
+    display: flex;
+    justify-content: flex-end;
+    border: 1px solid #e7f0f9;
+    padding-top: 10px;
+    border-radius: 10px;
+    position: relative;
+    box-sizing: border-box;
+    /*margin: 10px 0;*/
+}
+
+.drum-controls .row--noBorder {
+    padding: 0;
+    border: 0;
+}
+
+.drum-controls .row .col {
+    flex: 1 0;
+    display: flex;
+    margin: 0;
+}
+
+.col-1 .knob-wrapper {
+    margin: 10px auto;
+    padding-top: 10px;
+}
+
+.drum-controls .row .col-3 {
+    flex: 3 0;
+    justify-content: flex-end;
+    position: relative;
+    border: 1px solid #e7f0f9;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+
+.drum-controls .row .col-3 > div {
+    margin: 8px 10px;
+}
+
+#filterType {
+    height: auto;
+    /*width: auto;*/
+    padding: 5px;
+    background: #FDC47A;
+    box-shadow: 1px 2px 4px #FDC47A;
+    font-family: robotolight;
+    color: #2f2f2f;
+    font-size: 13px;
+    text-shadow: 1px 1px 2px #DFDD9A;
+    margin-top: 5px;
+}
+
+#filterType:focus, #filterType:active, #startLoop:active, #stopLoop:active {
+    box-shadow: none;
+}
+
+.drum-controls-title {
+    position: absolute;
+    display: block;
+    width: 80px;
+    font-family: robotolight;
+    color: #e7f0f9;
+    font-size: 10px;
+    line-height: 1.8em;
+    margin: 0 !important;
+    background: #2f2f2f;
+    border: 1px solid #e7f0f9;
+    top: 0;
+    top: -0.9em;
+    left: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.drum-controls .row + .row {
+    margin-top: 15px;
+}
+
+.drum-controls .row > div {
+    flex: 0 0 50px;
+    margin: 8px 10px;
+}
+
+.display {
+    font-size: 24px;
+    /*direction: rtl;*/
+    overflow: hidden;
+    display: block;
+    height: 40px;
+    width: 50px;
+    text-align: right;
+    padding: 2px 8px 5px;
+    box-sizing: border-box;
+    /*border: 3px solid #333;*/
+    border-image: linear-gradient(-10deg, #333 0%, #111 100%);
+    border-image-slice: 1;
+    background-color: #997;
+    background-image: repeating-linear-gradient(0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 1px,
+    rgba(0, 0, 0, .05) 2px,
+    rgba(0, 0, 0, 0) 3px,
+    rgba(0, 0, 0, 0) 4px
+    );
+    margin: 0 10px;
+
+    border-radius: 4px;
+    font-family: vt323;
+    font-weight: bold;
+    letter-spacing: .08em;
+    box-shadow: inset 2px 2px 10px rgba(0, 0, 0, .4),
+    inset 0 0 80px rgba(255, 255, 200, .8);
+}
+
+.display input {
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-family: vt323;
+    font-weight: bold;
+    letter-spacing: .08em;
+    font-size: 24px;
+    width: 130%;
+    text-align: center;
+    color: black;
+    /*cursor: none;*/
+}
+
+.Top-controls {
+    display: flex;
+    margin: 20px 0;
+}
+
+.Top-controls > div {
+    flex: 0 0 50%;
+}
+
+.screens {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.screens .display {
+    margin: 0 5px;
+    width: 60px;
+    padding: 2px 2px 5px;
+}
+
+#bpmDisplay {
+    width: 150%;
+}
+
+.bpmWrapper {
+    /*flex: 1 0 200px;*/
+}
+
+.Knob {
+    display: flex;
+    justify-content: flex-start;
+    /*align-items: center;*/
+}
+
+.Knob > div + div {
+    margin-left: 15px;
+}
+
+.knob {
+    display: block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    position: relative;
+    background: transparent;
+    box-shadow: 1px 2px 4px #fffcfd;
+    outline: none;
+    transform: rotate(-45deg);
+    margin: 0 auto;
+    /*margin-bottom: 20px;*/
+}
+
+.knob-wrapper {
+    text-align: center;
+    width: 50px;
+}
+
+.knob-title {
+    /*transform: rotate(45deg);*/
+    color: #fffcfd;
+    padding-top: 5px;
+    display: block;
+    font-family: robotoregular;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0px 1px 3px #DFDD9A;
+}
+
+.knob-rotator {
+    display: block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    position: relative;
+    background: #e7f0f9;
+    /*box-shadow: 1px 2px 4px #fffcfd;*/
+    outline: none;
+}
+
+.knob-rotator:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    /*border-radius:2px;*/
+    /*background: black;*/
+    background: #2f2f2f;
+    left: 0;
+    top: 50%;
+    margin-top: -1px;
+}
+
+.knob-target {
+    display: none;
+}
+
+/*.knob:after {*/
+/*content: "";*/
+/*left: 0;*/
+/*top: 0;*/
+/*position: absolute;*/
+/*display: block;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*background: transparent;*/
+/*border-radius: 50%;*/
+/*box-shadow: 1px 2px 4px #fffcfd;*/
+/*}*/
