@@ -115,7 +115,7 @@ body * {
     content: '';
     height: 18px;
     width: 1px;
-    background: #fffcfd;
+    background: #fffcfd !important;
     display: block;
     position: absolute;
     right: -15px;
