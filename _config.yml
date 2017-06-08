@@ -23,8 +23,8 @@ exclude:
   - package.json
   - node_modules
   - gulpfile.js
-  - css
+  #- css
   - _sass
-  - js
+  #- js
 include: ['_pages']
 gems: ['jekyll-github-metadata']

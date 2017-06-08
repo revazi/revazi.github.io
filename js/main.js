@@ -9,21 +9,26 @@ var animateSvgPath = require('./animateSvgPath.js').animateSvgPath;
 //ReactDOM.render(myDivElement, document.getElementById('container'));
 //console.log('here');
 //menu.render();
-$(document).ready(function(){
-  var path = document.querySelector('.z-svg path.animated');
-  setTimeout(function(){
-    $('body').addClass('loaded');
-    setTimeout(function(){
-      $('.LoadingOverlay').addClass('hidden');
-    },500);
-  }, 1000);
+$(document).ready(function () {
+    var path = document.querySelector('.z-svg path.animated');
 
-  animateSvgPath(path, {
-    infiniteLoop: false,
-    duration: 1.8,
-    transition: 'ease-in-out',
-    loopCount: 3,
-    strokeColor: '#9aff83'
-  });
+    setTimeout(function () {
+        $('body').addClass('loaded');
+        setTimeout(function () {
+            $('.LoadingOverlay').addClass('hidden');
+            if($('body').hasClass('controller')) {
+              $('#z-svg').addClass('hidden');
+              $('.Section-svg--namePlaceholder').addClass('hidden');
+            }
+        }, 500);
+    }, 1000);
+
+    animateSvgPath(path, {
+        infiniteLoop: false,
+        duration: 1.8,
+        transition: 'ease-in-out',
+        loopCount: 3,
+        strokeColor: '#9aff83'
+    });
 });
 
