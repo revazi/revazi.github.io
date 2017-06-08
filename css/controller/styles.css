@@ -107,7 +107,8 @@ body * {
 
 .Sequencerpads ul li:nth-child(4n) {
     margin-right: 10px;
-    /*border-right: 1px solid white;*/
+}
+.Sequencerpads ul li {
     position: relative;
 }
 
