@@ -73,6 +73,10 @@ function setup() {
         ? select('.knob-target', select("#delayFreqFilter")) : null;
     var delayTime = select('.knob-target', select("#knobDelayTime")) != null
         ? select('.knob-target', select("#knobDelayTime")) : null;
+    var reverbDecay = select('.knob-target', select("#knobReverbDecay")) != null
+        ? select('.knob-target', select("#knobReverbDecay")) : null;
+    var reverbTime = select('.knob-target', select("#knobReverbTime")) != null
+        ? select('.knob-target', select("#knobReverbTime")) : null;
     var filterSwitch = select('#filterType') != null ? select('#filterType') : null;
     var filterType = null;
     var bpmDisplay = select("#bpmDisplay");
@@ -94,18 +98,23 @@ function setup() {
         'cymbal', 'maracas', 'zap', 'sample'];
 
     instrumentParts.map(function (el) {
-        patterns[el] = [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1];
+        patterns[el] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         phrases[el] = new p5.Phrase(el, makeSound(sounds[el]), patterns[el]);
 
         sounds[el].effects.lowPassfilter = new p5.LowPass();
         sounds[el].effects.highPassfilter = new p5.HighPass();
         sounds[el].effects.delay = new p5.Delay();
+        sounds[el].effects.reverb = new p5.Reverb();
         sounds[el].sound.disconnect();
         // sounds[el].sound.connect(sounds[el].effects.env);
+        sounds[el].effects.reverb.process(sounds[el].sound, 0.1, 1, 0);
         sounds[el].effects.delay.process(sounds[el].sound, 0, 0, 0);
+        // sounds[el].sound.connect(sounds[el].effects.reverb);
         sounds[el].sound.connect(sounds[el].effects.highPassfilter);
         sounds[el].sound.connect(sounds[el].effects.highPassfilter);
         sounds[el].sound.connect(sounds[el].effects.delay);
+
+        // sounds[el].effects.reverb.set(0, 0);
         // sounds[el].effects.delay.filter(0);
         // sounds[el].effects.delay.delayTime(0.1);
         // sounds[el].effects.delay.feedback(0.1);
@@ -115,7 +124,7 @@ function setup() {
 
     myPart = new p5.Part();
     myPart.setBPM(80);
-    myPart.loop();
+    // myPart.loop();
     myPart.onStep(function (stepData) {
         // console.log(stepData);
     });
@@ -124,12 +133,14 @@ function setup() {
         if (myPart != null) {
             myPart.loop();
             looping = true;
+            this.addClass('active');
         }
     });
     stopLoop.mouseClicked(function () {
         if (myPart != null) {
             myPart.stop();
             looping = false;
+            startLoop.removeClass('active');
         }
     });
 
@@ -198,6 +209,9 @@ function setup() {
             phraseName = pad.attribute('id');
             // if (!looping) {
             sounds[phraseName].sound.play();
+            // sounds[phraseName].effects.reverb.set(0.1,1);
+            // sounds[phraseName].effects.reverb.set(0,0);
+
             // }
             pads.map(function (p) {
                 p.removeClass('recording');
@@ -344,8 +358,18 @@ function setup() {
                     // );
                 }
                 break;
-            case 'volume':
-                sounds[activePad.attribute('id')].sound.setVolume(value*0.01);
+            case 'reverbTime':
+                console.log('reverbTime');
+                if (activePad != null)
+                    sounds[activePad.attribute('id')].effects.reverb.set(value * 0.1, reverbDecay.value());
+                break;
+            case 'reverbDecay':
+                console.log('reverbDecay');
+                if (activePad != null)
+                sounds[activePad.attribute('id')].effects.reverb.set(reverbTime.value()*0.1,value);
+                    break;
+            case 'pan':
+                sounds[activePad.attribute('id')].sound.pan(value * 0.01);
                 break;
             default:
             // console.log('no luck');

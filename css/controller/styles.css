@@ -311,9 +311,10 @@ body * {
     font-size: 13px;
     text-shadow: 1px 1px 2px #DFDD9A;
     margin-top: 5px;
+    width: 60px;
 }
 
-#filterType:focus, #filterType:active, #startLoop:active, #stopLoop:active {
+#filterType:focus, #filterType:active, #startLoop:active, #stopLoop:active, #startLoop.active {
     box-shadow: none;
 }
 
