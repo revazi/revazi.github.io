@@ -1,494 +1,352 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/application.css" type="text/css"/>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-</head>
-<body>
-<div class="MainWrapper">
-    <div class="Sidebar">
-      <nav class="Sidebar-navigation">
-        <ul class="Sidebar-flexNavigation Sidebar-flexNavigation--logoAndMenuButton">
-          <li class="logo"><a href="/"><img src="images/educare-logo.png" alt=""/></a></li>
-          <li class="menu-icon"><a href="#" class="toggle-menu"><i class="icon-menu Icon Icon--menu"></i>menu</a></li>
-        </ul>
-        <ul class="Sidebar-flexNavigation Sidebar-flexNavigation--mainMenu">
-          <li>
-            <a href="#">
-              <span class="bedge">3</span>
-              <i class="icon-book"></i>
-              Projects
-            </a>
-          </li>
-          <li class="about-us"><a href="#"><i class="icon-presentation"></i>About Us</a>
-            <ul class="nested-menu">
-              <li><a href="#">Lynda</a></li>
-              <li><a href="#">Code.org</a></li>
-              <li><a href="#">Treehouse</a></li>
-            </ul>
-          </li>
-          <li><a href="#"><i class="icon-target"></i>Donate</a></li>
-        </ul>
-        <div class="Sidebar-flexNavigation Sidebar-flexNavigation--socialLinks">
-          <span>Share Page:</span>
-          <ul>
-            <li><a href="#"><i class="icon-facebook-circle Icon Icon--darkBlue"></i></a></li>
-            <li><a href="#"><i class="icon-twitter-circle Icon Icon--blue"></i></a></li>
-            <li><a href="#"><i class="icon-google-circle Icon Icon--red"></i></a></li>
-          </ul>
-        </div>
-        <ul class="Sidebar-flexNavigation Sidebar-flexNavigation--bottomMenu">
-          <li><a href=""><i class="icon-flag"></i>Add Project<i class=""></i></a></li>
-          <li><a href=""><i class="icon-book"></i>Our Blog</a></li>
-        </ul>
-      </nav>
+<html><head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>listing directory /</title>
+    <style>* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+body {
+  padding: 80px 100px;
+  font: 13px "Helvetica Neue", "Lucida Grande", "Arial";
+  background: #ECE9E9 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#ECE9E9));
+  background: #ECE9E9 -moz-linear-gradient(top, #fff, #ECE9E9);
+  background-repeat: no-repeat;
+  color: #555;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 {
+  font-size: 22px;
+  color: #343434;
+}
+h1 em, h2 em {
+  padding: 0 5px;
+  font-weight: normal;
+}
+h1 {
+  font-size: 60px;
+}
+h2 {
+  margin-top: 10px;
+}
+h3 {
+  margin: 5px 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+  font-size: 18px;
+}
+ul li {
+  list-style: none;
+}
+ul li:hover {
+  cursor: pointer;
+  color: #2e2e2e;
+}
+ul li .path {
+  padding-left: 5px;
+  font-weight: bold;
+}
+ul li .line {
+  padding-right: 5px;
+  font-style: italic;
+}
+ul li:first-child .path {
+  padding-left: 0;
+}
+p {
+  line-height: 1.5;
+}
+a {
+  color: #555;
+  text-decoration: none;
+}
+a:hover {
+  color: #303030;
+}
+#stacktrace {
+  margin-top: 15px;
+}
+.directory h1 {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+ul#files {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+ul#files li {
+  float: left;
+  width: 30%;
+  line-height: 25px;
+  margin: 1px;
+}
+ul#files li a {
+  display: block;
+  height: 25px;
+  border: 1px solid transparent;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+ul#files li a:focus,
+ul#files li a:hover {
+  background: rgba(255,255,255,0.65);
+  border: 1px solid #ececec;
+}
+ul#files li a.highlight {
+  -webkit-transition: background .4s ease-in-out;
+  background: #ffff4f;
+  border-color: #E9DC51;
+}
+#search {
+  display: block;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 90px;
+  -webkit-transition: width ease 0.2s, opacity ease 0.4s;
+  -moz-transition: width ease 0.2s, opacity ease 0.4s;
+  -webkit-border-radius: 32px;
+  -moz-border-radius: 32px;
+  -webkit-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
+  -moz-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+  font: 13px "Helvetica Neue", Arial, sans-serif;
+  padding: 4px 10px;
+  border: none;
+  background: transparent;
+  margin-bottom: 0;
+  outline: none;
+  opacity: 0.7;
+  color: #888;
+}
+#search:focus {
+  width: 120px;
+  opacity: 1.0; 
+}
+
+/*views*/
+#files span {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-indent: 10px;
+}
+#files .name {
+  background-repeat: no-repeat;
+}
+#files .icon .name {
+  text-indent: 28px;
+}
+
+/*tiles*/
+.view-tiles .name {
+  width: 100%;
+  background-position: 8px 5px;
+}
+.view-tiles .size,
+.view-tiles .date {
+  display: none;
+}
+
+/*details*/
+ul#files.view-details li {
+  float: none;
+  display: block;
+  width: 90%;
+}
+ul#files.view-details li.header {
+  height: 25px;
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+}
+.view-details .header {
+  border-radius: 5px;
+}
+.view-details .name {
+  width: 60%;
+  background-position: 8px 5px;
+}
+.view-details .size {
+  width: 10%;
+}
+.view-details .date {
+  width: 30%;
+}
+.view-details .size,
+.view-details .date {
+  text-align: right;
+  direction: rtl;
+}
+
+/*mobile*/
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+    line-height: 16px;
+    padding: 0;
+  }
+  #search {
+    position: static;
+    width: 100%;
+    font-size: 2em;
+    line-height: 1.8em;
+    text-indent: 10px;
+    border: 0;
+    border-radius: 0;
+    padding: 10px 0;
+    margin: 0;
+  }
+  #search:focus {
+    width: 100%;
+    border: 0;
+    opacity: 1;
+  }
+  .directory h1 {
+    font-size: 2em;
+    line-height: 1.5em;
+    color: #fff;
+    background: #000;
+    padding: 15px 10px;
+    margin: 0;
+  }
+  ul#files {
+    border-top: 1px solid #cacaca;
+  }
+  ul#files li {
+    float: none;
+    width: auto !important;
+    display: block;
+    border-bottom: 1px solid #cacaca;
+    font-size: 2em;
+    line-height: 1.2em;
+    text-indent: 0;
+    margin: 0;
+  }
+  ul#files li:nth-child(odd) {
+    background: #e0e0e0;
+  }
+  ul#files li a {
+    height: auto;
+    border: 0;
+    border-radius: 0;
+    padding: 15px 10px;
+  }
+  ul#files li a:focus,
+  ul#files li a:hover {
+    border: 0;
+  }
+  #files .header,
+  #files .size,
+  #files .date {
+    display: none !important;
+  }
+  #files .name {
+    float: none;
+    display: inline-block;
+    width: 100%;
+    text-indent: 0;
+    background-position: 0 50%;
+  }
+  #files .icon .name {
+    text-indent: 41px;
+  }
+}
+</style>
+    <script>
+      function $(id){
+        var el = 'string' == typeof id
+          ? document.getElementById(id)
+          : id;
+
+        el.on = function(event, fn){
+          if ('content loaded' == event) {
+            event = window.attachEvent ? "load" : "DOMContentLoaded";
+          }
+          el.addEventListener
+            ? el.addEventListener(event, fn, false)
+            : el.attachEvent("on" + event, fn);
+        };
+
+        el.all = function(selector){
+          return $(el.querySelectorAll(selector));
+        };
+
+        el.each = function(fn){
+          for (var i = 0, len = el.length; i < len; ++i) {
+            fn($(el[i]), i);
+          }
+        };
+
+        el.getClasses = function(){
+          return this.getAttribute('class').split(/\s+/);
+        };
+
+        el.addClass = function(name){
+          var classes = this.getAttribute('class');
+          el.setAttribute('class', classes
+            ? classes + ' ' + name
+            : name);
+        };
+
+        el.removeClass = function(name){
+          var classes = this.getClasses().filter(function(curr){
+            return curr != name;
+          });
+          this.setAttribute('class', classes.join(' '));
+        };
+
+        return el;
+      }
+
+      function search() {
+        var str = $('search').value
+          , links = $('files').all('a');
+
+        links.each(function(link){
+          var text = link.textContent;
+
+          if ('..' == text) return;
+          if (str.length && ~text.indexOf(str)) {
+            link.addClass('highlight');
+          } else {
+            link.removeClass('highlight');
+          }
+        });
+      }
+
+      $(window).on('content loaded', function(){
+        $('search').on('keyup', search);
+      });
+    </script>
+  </head>
+  <body class="directory">
+    <div id="wrapper">
+      <h1><a href="/">~</a> / </h1>
+      <ul id="files" class="view-tiles"><li><a href="/css" class="" title="css"><span class="name">css</span><span class="size"></span><span class="date">2018-3-7 21:01:30</span></a></li>
+<li><a href="fonts" class="" title="fonts"><span class="name">fonts</span><span class="size"></span><span class="date">2018-3-7 21:01:30</span></a></li>
+<li><a href="images" class="" title="images"><span class="name">images</span><span class="size"></span><span class="date">2018-3-7 21:01:30</span></a></li>
+<li><a href="js" class="" title="js"><span class="name">js</span><span class="size"></span><span class="date">2018-3-7 21:01:31</span></a></li>
+<li><a href="about-us.html" class="" title="about-us.html"><span class="name">about-us.html</span><span class="size">7800</span><span class="date">2018-3-8 04:41:19</span></a></li>
+<li><a href="add-project.html" class="" title="add-project.html"><span class="name">add-project.html</span><span class="size">8702</span><span class="date">2018-3-8 04:41:19</span></a></li>
+<li><a href="donated.html" class="" title="donated.html"><span class="name">donated.html</span><span class="size">7366</span><span class="date">2018-3-8 04:41:19</span></a></li>
+<li><a href="donating-fund.html" class="" title="donating-fund.html"><span class="name">donating-fund.html</span><span class="size">10082</span><span class="date">2018-3-8 04:41:19</span></a></li>
+<li><a href="donating.html" class="" title="donating.html"><span class="name">donating.html</span><span class="size">11212</span><span class="date">2018-3-8 04:41:19</span></a></li>
+<li><a href="eduworks-page.html" class="" title="eduworks-page.html"><span class="name">eduworks-page.html</span><span class="size">9006</span><span class="date">2018-3-8 04:41:19</span></a></li>
+<li><a href="home.html" class="" title="home.html"><span class="name">home.html</span><span class="size">34127</span><span class="date">2018-3-8 04:41:20</span></a></li>
+<li><a href="motivation.html" class="" title="motivation.html"><span class="name">motivation.html</span><span class="size">2080</span><span class="date">2018-3-8 04:41:20</span></a></li>
+<li><a href="project-list.html" class="" title="project-list.html"><span class="name">project-list.html</span><span class="size">16292</span><span class="date">2018-3-8 04:41:20</span></a></li>
+<li><a href="team.html" class="" title="team.html"><span class="name">team.html</span><span class="size">15380</span><span class="date">2018-3-8 04:41:20</span></a></li>
+<li><a href="view-progress.html" class="" title="view-progress.html"><span class="name">view-progress.html</span><span class="size">17586</span><span class="date">2018-3-8 04:41:20</span></a></li>
+<li><a href="view-project-progress.html" class="" title="view-project-progress.html"><span class="name">view-project-progress.html</span><span class="size">15234</span><span class="date">2018-3-8 04:41:21</span></a></li>
+<li><a href="view-project.html" class="" title="view-project.html"><span class="name">view-project.html</span><span class="size">20212</span><span class="date">2018-3-8 04:41:21</span></a></li>
+<li><a href="view-result.html" class="" title="view-result.html"><span class="name">view-result.html</span><span class="size">12913</span><span class="date">2018-3-8 04:41:21</span></a></li></ul>
     </div>
-    <div class="Grid Grid-withGutter MainContent">
-        <header class="Grid-cell Grid">
-          <div class="Cover">
-            <img src="images/test.png" alt=""/>
-            <span class="Cover--background"></span>
-          </div>
-          <div class="Grid-cell text-wrapper">
-            <h1 class="Text Text--headingWhite">Bring quality education through the Internet and technologies to
-                developing countries</h1>
-            <p class="Text Text--white">Thanks to your support, 23 000 people have already benefited from our
-                projects.</p>
-          </div>
-        </header>
-        <section class="Grid-cell Grid Section Section--projects">
-            <div class="Grid-cell Grid u-size2of5   info-wrapper">
-                <div class="Grid-cell">
-                    <p class="Text main-text">
-                        We’re a not-for-profit on a mission to bring a world class education through the Internet and
-                        technologies to the people in developing countries
-                    </p>
-                    <p class="Text Text--blue Text--bluem">
-                        100% of your donations go directly to an education project of your choosing
-                    </p>
-                </div>
-                </div>
-            <div id="projects-carousel" class="Grid-cell Grid u-size3of5 projects-wrapper carousel slide" data-ride="carousel" data-interval="false">
-              <ul class="carousel-inner" role="listbox">
-                  <li class="item active">
-                      <div class="ProjectTeaser">
-                        <a href="/" class="ProjectTeaser-link"></a>
-                        <div class="ProjectTeaser-cover">
-                          <div class="ProjectTeaser-cover-wrapper">
-                            <img src="http://lorempixel.com/640/480/abstract/" alt="image" class="image-vertical"/>
-                            <img src="http://lorempixel.com/640/480/people/" alt="image" class="image-horizontal"/>
-                          </div>
-                        </div>
-                        <div class="ProjectTeaser-info">
-                          <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                          <div class="ProjectTeaser-info-potentialImpact">
-                            <span class="Text Text--lighter">Potential impact:</span>
-                            <span class="Text Text--headingBlue">20,000</span>
-                            <span class="Text Text--blue">People</span>
-                          </div>
-                          <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                          <div class="ProjectTeaser-btnAndStats">
-                            <div class="ProgressBar">
-                              <div class="ProgressBar-progress">
-                                <div class="ProgressBar-progress-percentage"></div>
-                              </div>
-                              <div class="ProgressBar-info">
-                                <span class="ProgressBar-info-percentage">70%</span>
-                                <span class="ProgressBar-info-amount">$500</span>
-                              </div>
-                            </div>
-                            <a class="Btn" href="#">View <i class="icon-chevron-right"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                  </li>
-                  <li class="item">
-                      <div class="ProjectTeaser">
-                        <a href="/" class="ProjectTeaser-link"></a>
-                        <div class="ProjectTeaser-cover">
-                          <div class="ProjectTeaser-cover-wrapper">
-                            <img src="http://lorempixel.com/640/480/abstract/" alt="image" class="image-vertical"/>
-                            <img src="http://lorempixel.com/640/480/people/" alt="image" class="image-horizontal"/>
-                          </div>
-                        </div>
-                        <div class="ProjectTeaser-info">
-                          <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                          <div class="ProjectTeaser-info-potentialImpact">
-                            <span class="Text Text--lighter">Potential impact:</span>
-                            <span class="Text Text--headingBlue">20,000</span>
-                            <span class="Text Text--blue">People</span>
-                          </div>
-                          <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                          <div class="ProjectTeaser-btnAndStats">
-                            <div class="ProgressBar">
-                              <div class="ProgressBar-progress">
-                                <div class="ProgressBar-progress-percentage"></div>
-                              </div>
-                              <div class="ProgressBar-info">
-                                <span class="ProgressBar-info-percentage">70%</span>
-                                <span class="ProgressBar-info-amount">$500</span>
-                              </div>
-                            </div>
-                            <a class="Btn" href="#">View <i class="icon-chevron-right"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                  </li>
-                  <li class="item">
-                      <div class="ProjectTeaser">
-                        <a href="/" class="ProjectTeaser-link"></a>
-                        <div class="ProjectTeaser-cover">
-                          <div class="ProjectTeaser-cover-wrapper">
-                            <img src="http://lorempixel.com/640/480/abstract/" alt="image" class="image-vertical"/>
-                            <img src="http://lorempixel.com/640/480/people/" alt="image" class="image-horizontal"/>
-                          </div>
-                        </div>
-                        <div class="ProjectTeaser-info">
-                          <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                          <div class="ProjectTeaser-info-potentialImpact">
-                            <span class="Text Text--lighter">Potential impact:</span>
-                            <span class="Text Text--headingBlue">20,000</span>
-                            <span class="Text Text--blue">People</span>
-                          </div>
-                          <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                          <div class="ProjectTeaser-btnAndStats">
-                            <div class="ProgressBar">
-                              <div class="ProgressBar-progress">
-                                <div class="ProgressBar-progress-percentage"></div>
-                              </div>
-                              <div class="ProgressBar-info">
-                                <span class="ProgressBar-info-percentage">70%</span>
-                                <span class="ProgressBar-info-amount">$500</span>
-                              </div>
-                            </div>
-                            <a class="Btn" href="#">View <i class="icon-chevron-right"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                  </li>
-              </ul>
-              <ol class="carousel-indicators Grid-cell u-sizeFull">
-                <li data-target="#projects-carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#projects-carousel" data-slide-to="1"></li>
-                <li data-target="#projects-carousel" data-slide-to="2"></li>
-              </ol>
-              <div class="projects-button-wrapper">
-                <a href="#" class="Text allprojects-button">View All Projects <i class="icon-chevron-right"></i></a>
-                <a href="#" class="Text completedProjects-button">View Completed Projects <i class="icon-chevron-right"></i></a>
-              </div>
-            </div>
-        </section>        <section class="Grid-cell Section Section--withPadding Section--eduWorks">
-          <div class="Section-wrapper">
-            <h1 class="Text Text--heading">How educare global works</h1>
-        
-            <div id="eduworks-carousel" class="Grid TeaserWrapper TeaserWrapper carousel slide" data-ride="carousel" data-interval="false">
-              <div class="carousel-inner Grid-cell Grid" role="listbox">
-                <div class="Grid-cell u-size1of2 u-sizeFull-md item active">
-                  <div class="Teaser Teaser--oneColumn">
-                    <div class="Teaser-cover">
-                      <div class="Teaser-cover-wrapper">
-                        <img src="http://lorempixel.com/640/480/abstract/" alt="image" />
-                      </div>
-                    </div>
-                    <div class="Teaser-info">
-                      <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                      <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                      <a class="Btn Btn--transparent" href="#">Learn more <i class="icon-chevron-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="Grid-cell u-size1of2 u-sizeFull-md item">
-                  <div class="Teaser Teaser--oneColumn">
-                    <div class="Teaser-cover">
-                      <div class="Teaser-cover-wrapper">
-                        <img src="http://lorempixel.com/640/480/abstract/" alt="image" />
-                      </div>
-                    </div>
-                    <div class="Teaser-info">
-                      <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                      <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                      <a class="Btn Btn--transparent" href="#">Learn more <i class="icon-chevron-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="Grid-cell u-size1of2 u-sizeFull-md item">
-                  <div class="Teaser Teaser--oneColumn">
-                    <div class="Teaser-cover">
-                      <div class="Teaser-cover-wrapper">
-                        <img src="http://lorempixel.com/640/480/abstract/" alt="image" />
-                      </div>
-                    </div>
-                    <div class="Teaser-info">
-                      <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                      <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                      <a class="Btn Btn--transparent" href="#">Learn more <i class="icon-chevron-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="Grid-cell u-size1of2 u-sizeFull-md hidden">
-                  <div class="Teaser Teaser--oneColumn">
-                    <div class="Teaser-cover">
-                      <div class="Teaser-cover-wrapper">
-                        <img src="http://lorempixel.com/640/480/abstract/" alt="image" />
-                      </div>
-                    </div>
-                    <div class="Teaser-info">
-                      <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                      <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                      <a class="Btn Btn--transparent" href="#">Learn more <i class="icon-chevron-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="Grid-cell u-size1of2 u-sizeFull-md hidden">
-                  <div class="Teaser Teaser--oneColumn">
-                    <div class="Teaser-cover">
-                      <div class="Teaser-cover-wrapper">
-                        <img src="http://lorempixel.com/640/480/abstract/" alt="image" />
-                      </div>
-                    </div>
-                    <div class="Teaser-info">
-                      <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                      <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                      <a class="Btn Btn--transparent" href="#">Learn more <i class="icon-chevron-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <ol class="carousel-indicators Grid-cell u-sizeFull">
-                <li data-target="#eduworks-carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#eduworks-carousel" data-slide-to="1"></li>
-                <li data-target="#eduworks-carousel" data-slide-to="2"></li>
-                <li data-target="#eduworks-carousel" data-slide-to="3" class="hidden"></li>
-                <li data-target="#eduworks-carousel" data-slide-to="4" class="hidden"></li>
-              </ol>
-              <div class="even-more">
-                <a href="#" class="Text Text--lighter">
-                  <span class="more">even more</span>
-                  <span class="less">less</span>
-                 <i class="icon-circle-right"></i></a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="Grid-cell Section Section--fullWidth Section--withPadding SuccessStories">
-          <div class="Cover">
-              <img src="http://lorempixel.com/640/480/sports/1" alt=""/>
-              <span class="Cover--background"></span>
-          </div>
-          <div class="Section-wrapper Section-wrapper--fullwidth">
-              <h1 class="Text Text--heading">Success Stories</h1>
-              <div class="SuccessStories-content">
-                <p class="Text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <h2 class="Text Text--heading">Life of george</h2>
-                <div class="Tabs-successStories">
-                  <div class="Tabs-successStories-select Grid">
-                      <a href="#" class="Grid-cell Btn Btn--transparent Btn--tabs">Before Educare</a>
-                      <a href="#" class="Grid-cell Btn Btn--transparent Btn--tabs active">After Educare</a>
-                  </div>
-                  <div class="Tabs-successStories-content">
-                    <p class="Text tabcontent">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <p class="Text tabcontent hidden">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
-                  </div>
-                </div>
-                <div class="button-wrapper">
-                  <a href="#" class="Btn Btn--white Btn--fat Btn--curved">All Stories <i class="icon-chevron-right"></i></a>
-                </div>
-              </div>
-          </div>
-        </section>
-        <section class="Grid-cell Section Section--withPadding Section--support">
-          <div class="Section-wrapper">
-            <h1 class="Text Text--heading">Why Support Education Technology</h1>
-            <p class="Text Text--lighter Text--lighterm">
-              For too long had quality education been a birthright of the elite circles only, excluding millions of motivated students who lacked financial support. With the advance of new technologies and the Internet this is no longer a case, as education is becoming more accessible than it has ever been in human history.
-            </p>
-            <div id="supports-carousel" class="Grid TeaserWrapper TeaserWrapper--oneColumn carousel slide" data-ride="carousel" data-interval="false">
-              <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                  <div class="Teaser">
-                    <div class="Teaser-cover">
-                      <div class="Teaser-cover-wrapper">
-                        <img src="http://lorempixel.com/640/480/abstract/" alt="image" />
-                      </div>
-                    </div>
-                    <div class="Teaser-info">
-                      <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                      <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                      <a class="Btn Btn--transparent" href="#">Learn more <i class="icon-chevron-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="Teaser">
-                    <div class="Teaser-cover">
-                      <div class="Teaser-cover-wrapper">
-                        <img src="http://lorempixel.com/640/480/abstract/" alt="image" />
-                      </div>
-                    </div>
-                    <div class="Teaser-info">
-                      <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                      <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                      <a class="Btn Btn--transparent" href="#">Learn more <i class="icon-chevron-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="Teaser">
-                    <div class="Teaser-cover">
-                      <div class="Teaser-cover-wrapper">
-                        <img src="http://lorempixel.com/640/480/abstract/" alt="image" />
-                      </div>
-                    </div>
-                    <div class="Teaser-info">
-                      <h2 class="Text Text--heading">Train Teachers For Better Education</h2>
-                      <p class="Text Text--lighter Text--lighterm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-                      <a class="Btn Btn--transparent" href="#">Learn more <i class="icon-chevron-right"></i></a>
-                    </div>
-                  </div>
-                </div>
-        
-        
-              </div>
-              <ol class="carousel-indicators Grid-cell u-sizeFull">
-                <li data-target="#supports-carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#supports-carousel" data-slide-to="1"></li>
-                <li data-target="#supports-carousel" data-slide-to="2"></li>
-              </ol>
-            </div>
-          </div>
-        </section>
-        <section class="Grid-cell">
-            <div class="StatisticsBlock">
-                <div class="StatisticsBlock-wrapper">
-                    <div class="StatisticsBlock-items">
-                        <div class="StatisticsBlock-items-info">
-                            <span class="Text Text--headingWhiteWithShadow">35,000</span>
-                            <span class="Text Text--white">Students served</span>
-                        </div>
-                        <div class="StatisticsBlock-items-info">
-                            <span class="Text Text--headingWhiteWithShadow">$50,000</span>
-                            <span class="Text Text--white">Raised</span>
-                        </div>
-                        <div class="StatisticsBlock-items-info">
-                            <span class="Text Text--headingWhiteWithShadow">30,000</span>
-                            <span class="Text Text--white">Number of contributors</span>
-                        </div>
-                    </div>
-                    <div class="StatisticsBlock-buttons">
-                        <div class="StatisticsBlock-buttons-wrapper">
-                            <a class="Btn Btn--white Btn--curved" href="#">Donate To Project <i class="icon-chevron-right"></i></a>
-                            <span class="Text Text--white">Select from current open projects and make an impact</span>
-                        </div>
-                        <div class="StatisticsBlock-buttons-wrapper">
-                            <a class="Btn Btn--white Btn--curved" href="#">Donate To Fund <i class="icon-chevron-right"></i></a>
-                            <span class="Text Text--white">Donate directly to our fund</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>        <section class="Newsletter Grid-cell Grid Grid--alignCenter Section Section--withPadding">
-            <h2 class="Text Text--heading Text--headingGrey Grid Grid--alignCenter Grid-cell">JOIN OUR NEWSLETTER</h2>
-            <div class="Grid Grid--alignCenter Grid-cell">
-                <p class="Text Text--grey u-size1of2">
-                    We will email you once in month about progress and notify about upcoming projects.
-                </p>
-            </div>
-            <form class="Newsletter-form">
-                <input class="Input" type="email" name="email" placeholder="Your email">
-                <div class="Btn-wrapper">
-                    <button class="Btn Btn--submit" type="submit">Subscribe</button>
-                    <i class="icon-chevron-right"></i>
-                </div>
-            </form>
-        </section>
-        <section class="Grid-cell Grid Grid--alignCenter Section Section--withPadding Partners">
-            <div class="Grid-cell Grid Grid--alignCenter Partners-wrapper">
-                <div class="Partners-wrapper-title">
-                    <span class="Text Text--subHeadingGrey">Our Partners:</span>
-                </div>
-                <div id="partners-carousel" class="Partners-wrapper-carousel carousel slide carousel-always" data-ride="carousel" data-interval="false">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="Grid item active">
-                            <div class="Grid-cell u-size1of2 u-sizeFull-md image">
-                                <a href="#"><img src="http://lorempixel.com/300/100/"></a>
-                            </div>
-                            <div class="Grid-cell u-size1of2 u-sizeFull-md image"> 
-                                <a href="#"><img src="http://lorempixel.com/300/100/"></a>
-                            </div>
-                        </div>
-                        <div class="Grid item">
-                            <div class="Grid-cell u-size1of2 u-sizeFull-md image">
-                                <a href="#"><img src="http://lorempixel.com/300/100/"></a>
-                            </div>
-                            <div class="Grid-cell u-size1of2 u-sizeFull-md image"> 
-                                <a href="#"><img src="http://lorempixel.com/300/100/"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <ol class="carousel-indicators Grid-cell u-sizeFull">
-                        <li data-target="#partners-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#partners-carousel" data-slide-to="1"></li>
-                    </ol>
-                </div>
-            </div>
-        </section>
-        <footer class="Grid-cell Footer">
-            <div class="Footer-top">
-                <nav class="Footer-navigation">
-                    <ul class="Footer-navigation-menu">
-                        <li class="Footer-navigation-menu-item u-size3of10 u-sizeFull-md">
-                            <span class="Text Text--headingFooterMenu">PROJECTS</span>
-                            <ul>
-                                <li><a href="#">Current Projects</a><span class="Badge">4</span></li>
-                                <li><a href="#">Completed projects</a></li>
-                            </ul>
-                        </li>
-                        <li class="Footer-navigation-menu-item u-size4of10 u-sizeFull-md">
-                            <span class="Text Text--headingFooterMenu">ABOUT US</span>
-                            <ul class="middle-menu">
-                                <li><a href="#">How it works</a></li>
-                                <li><a href="#">Transparency</a></li>
-                                <li><a href="#">Our Story</a></li>
-                                <li><a href="#">Our Mission</a></li>
-                                <li><a href="#">Team</a></li>
-                                <li><a href="#">Partners</a></li>
-                                <li><a href="#">Financial</a></li>
-                            </ul>
-                        </li>
-                        <li class="Footer-navigation-menu-item u-size3of10 u-sizeFull-md">
-                            <span class="Text Text--headingFooterMenu">REACH US</span>
-                            <ul>
-                                <li><a class="Footer-navigation-menu-item-blog" href="#"><i class="icon-book"></i>Our Blog</a></li>
-                                <li><a class="Footer-navigation-menu-item-facebook" href="#"><i class="icon-facebook"></i>Facebook</a></li>
-                                <li><a class="Footer-navigation-menu-item-twitter" href="#"><i class="icon-twitter"></i>Twitter</a></li>
-                                <li><a class="Footer-navigation-menu-item-contact" href="#"><i class="icon-contact"></i>Contact us</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="Footer-bottom">
-                <div class="Footer-bottom-copyright">
-                    <span>©2015 Educare.org, a 501(c)(3) not-for-profit corporation.</span>
-                </div>
-                <div class="Footer-bottom-developedBy ">
-                    <span>
-                        Developed by 
-                    </span>
-                    <a href="https://sweetbits.co" class="sweetbits">
-                        <span class="sweet">Sweet</span
-                        ><span class="bits">Bits</span>
-                    </a>
-                </div>
-                <div class="Footer-bottom-privacy">
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms Of Service</a>
-                </div>
-            </div>
-        </footer>    </div>
-</div>
-<script type="text/javascript" charset="utf-8" src="./js/main.js"></script>
-</body>
-</html>
+</body></html>
