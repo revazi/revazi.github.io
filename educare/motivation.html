@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/application.css" type="text/css"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<div class="MainWrapper">
+    <div class="Sidebar">
+        <span class="Text word-count">Char Count:</span>
+        <span class="Text Text--heading number">0</span>
+    </div>
+    <div class="Grid Grid-withGutter MainContent">
+
+        <section class="Section Section--withPadding">
+            <p contentEditable class="Text Text--subHeadingGrey motivation-letter">Type text here!</p>
+        </section>
+    </div>
+    <div class="styled-content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, eligendi a. Facilis nemo corporis eligendi optio, dolorem, eum quis cumque ipsum, quibusdam ut eaque. Voluptatibus modi odit, repudiandae tempora animi?
+            <iframe width="750" height="422" src="https://www.youtube.com/embed/-AorbE6al7c" frameborder="0"
+                            allowfullscreen=""></iframe>
+        </p>
+    </div>
+
+</div>
+<style>
+    .word-count {
+        display: block;
+        padding: 3rem 1rem;
+        text-align: center;
+        font-size: 18px;
+    }
+    .number {
+        display: block;
+        text-align: center;
+    }
+    .motivation-letter {
+        font-size: 22px;
+        line-height: 120%;
+        width: 80rem;
+        display: block;
+        position: relative;
+        min-height: 30rem;
+        display: block;
+        position: relative;
+        outline: none;
+        margin: 0 auto;
+        font-family: "MyriadPro";
+        padding: 3rem;
+        border: 2px solid #e9e9e9;
+
+    }
+</style>
+<script type="text/javascript" charset="utf-8" src="./js/main.js"></script>
+<script type="text/javascript" charset="utf-8" >
+    var letterCount = 0;
+    $(document).ready(function(){
+        $('.motivation-letter').keyup(function(){
+        letterCount = $(this).text().length;
+        $('.number').text(letterCount);
+       });
+    });
+</script>
+</body>
+</html>
