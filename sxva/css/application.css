@@ -1,0 +1,862 @@
+body, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, hr,
+dl, dd, ol, ul, figure {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-size: 16px;
+  height: 100%;
+  overflow-x: hidden;
+  min-height: 50vw;
+  max-height: 100%;
+}
+
+body.isTBC, body.isOther {
+  min-height: 400px;
+}
+
+@minclude media-query($on-laptop) {
+  body.isTBC, body.isOther {
+    min-height: 250px !important;
+  }
+}
+
+.Hidden {
+  display: none !important;
+}
+
+.Hidden--withOpacity {
+  display: block;
+  opacity: 0 !important;
+}
+
+/*@import "base/mixins";*/
+/** @define Grid */
+/**
+ * Core grid component
+ *
+ * DO NOT apply dimension or offset utilities to the `Grid` element. All cell
+ * widths and offsets should be applied to child grid cells.
+ */
+/* Grid container
+   ========================================================================== */
+/**
+ * All content must be contained within child `Grid-cell` elements.
+ *
+ * 1. Account for browser defaults of elements that might be the root node of
+ *    the component.
+ */
+.Grid {
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* 1 */
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  margin: 0;
+  /* 1 */
+  padding: 0;
+  /* 1 */
+}
+
+/**
+ * Modifier: center align all grid cells
+ */
+.Grid--alignCenter {
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+/**
+ * Modifier: right align all grid cells
+ */
+.Grid--alignRight {
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+}
+
+/**
+ * Modifier: middle-align grid cells
+ */
+.Grid--alignMiddle {
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+/**
+ * Modifier: bottom-align grid cells
+ */
+.Grid--alignBottom {
+  -ms-flex-align: end;
+      align-items: flex-end;
+}
+
+/**
+ * Modifier: allow cells to equal distribute width
+ *
+ * 1. Provide all values to avoid IE10 bug with shorthand flex - http://git.io/vllC7
+ *    Use `0%` to avoid bug in IE10/11 with unitless flex basis - http://git.io/vllWx
+ */
+.Grid--fit > .Grid-cell {
+  -ms-flex: 1 1 0%;
+      flex: 1 1 0%;
+  /* 1 */
+}
+
+/**
+ * Modifier: all cells match height of tallest cell in a row
+ */
+.Grid--equalHeight > .Grid-cell {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/**
+ * Modifier: gutters
+ */
+.Grid--withGutter {
+  margin: 0 calc(-0.5 * 20px);
+}
+
+.Grid--withGutter > .Grid-cell {
+  padding: 0 calc(0.5 * 20px);
+}
+
+/* Grid cell
+   ========================================================================== */
+/**
+ * No explicit width by default. Rely on combining `Grid-cell` with a dimension
+ * utility or a component class that extends 'Grid'.
+ *
+ * 1. Set flex items to full width by default
+ */
+.Grid-cell {
+  box-sizing: inherit;
+  -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+  /* 1 */
+}
+
+/**
+ * Modifier: horizontally center one unit
+ * Set a specific unit to be horizontally centered. Doesn't affect
+ * any other units. Can still contain a child `Grid` object.
+ */
+.Grid-cell--center {
+  margin: 0 auto;
+}
+
+@font-face {
+  font-family: 'tbc_din_mtavruli';
+  src: url("../fonts/tbcdin_mtavruli_bold-webfont.eot");
+  src: url("../fonts/tbcdin_mtavruli_bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/tbcdin_mtavruli_bold-webfont.woff2") format("woff2"), url("../fonts/tbcdin_mtavruli_bold-webfont.woff") format("woff"), url("../fonts/tbcdin_mtavruli_bold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.Question {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Question-option {
+  -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+  position: relative;
+  transition: all .3s ease-in-out;
+}
+
+.Question-option--tbc, .Question-option--other {
+  background: #00aeef;
+}
+
+.Question-option--tbc .Text, .Question-option--other .Text {
+  display: block;
+  position: absolute;
+  width: 100%;
+  margin-top: 85px;
+  top: 50%;
+  font-family: "tbc_din_mtavruli";
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  z-index: 11;
+  transition: opacity 0.2s ease 0.1s;
+}
+
+.Question-option--tbc .Text {
+  z-index: 100;
+}
+
+.isTBC .Question-option--tbc .Text {
+  opacity: 1;
+}
+
+.Question-option--other {
+  background: #6c0000;
+}
+
+.Question-option--other .loader {
+  width: 50px;
+}
+
+.Question-option--other .Text img {
+  height: 42px;
+  margin-right: 10px;
+}
+
+.isOther.loaded .Question-option--other .Text {
+  opacity: 1;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.isOther.loaded .Question-option--other .Text img {
+  height: 42px;
+  margin-right: 10px;
+}
+
+.isTBC .Question .Question-option--other {
+  /*right: auto;*/
+  -ms-flex: 0 0 190px;
+      flex: 0 0 190px;
+}
+
+.isTBC .Question .Question-option--tbc {
+  -ms-flex: 1 0 50%;
+      flex: 1 0 50%;
+  /*right: calc(100% - 190px);*/
+}
+
+.isOther .Question .Question-option--other {
+  -ms-flex: 1 0 50%;
+      flex: 1 0 50%;
+}
+
+.isOther .Question .Question-option--tbc {
+  -ms-flex: 0 0 190px;
+      flex: 0 0 190px;
+  /*left: none;*/
+}
+
+.Message {
+  display: block;
+  position: absolute;
+  padding: 60px;
+  background: #00aeef;
+  width: 510px;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  margin-top: -220px;
+  margin-left: -255px;
+  opacity: 0;
+  z-index: 20;
+  transition: all .3s ease;
+}
+
+.isOther.loaded .Message {
+  opacity: 1;
+}
+
+.Message:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 60px;
+  left: -39px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-right: 40px solid #00aeef;
+  border-bottom: 20px solid transparent;
+}
+
+.Message:after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 60px;
+  right: -39px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-left: 40px solid #00aeef;
+  border-bottom: 20px solid transparent;
+}
+
+.Message p {
+  font-size: 24px;
+  font-family: "tbc_din_mtavruli";
+  line-height: 120%;
+  color: white;
+}
+
+.Message img {
+  margin-top: 30px;
+  max-width: 100%;
+}
+
+.HeaderText {
+  position: absolute;
+  z-index: 100;
+  background: white;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 190px;
+  line-height: 120%;
+  color: #535353;
+  font-size: 40px;
+  transition: all .1s ease;
+  font-family: "tbc_din_mtavruli";
+}
+
+.isTBC .HeaderText, .isOther .HeaderText {
+  margin-top: -70%;
+}
+
+.HeaderText p {
+  z-index: 100;
+  margin-top: 90px;
+  color: RGBA(0, 173, 238, 1);
+}
+
+.HeaderText .Triangle {
+  /*content: "";*/
+  position: absolute;
+  width: 100%;
+  height: 120px;
+  top: 99%;
+  overflow: hidden;
+  /*@include media-query($on-laptop) {*/
+  /*top: 120px*/
+  /*}*/
+  /*@include media-query($on-palm) {*/
+  /*top: 100px;*/
+  /*}*/
+}
+
+.HeaderText .Triangle-skewed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+  padding-bottom: 30%;
+  width: 57.7%;
+  z-index: -1;
+  transform-origin: 0 0;
+  transform: rotate(-30deg) skewX(53deg) skewY(45deg);
+}
+
+.HeaderText:after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: white;
+  left: 50%;
+  margin-left: -50px;
+  transform: rotate(45deg);
+  bottom: -95%;
+  z-index: -1;
+  /*margin-bottom: 50px;*/
+}
+
+.Logo {
+  display: block;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 50%;
+  margin-top: -75px;
+  right: 113px;
+  transition: all .1s ease-in;
+  z-index: 1000;
+}
+
+.isOther .Logo--tbc {
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  right: 46px;
+}
+
+.isOther.loading .Logo--other {
+  left: 50%;
+  margin-left: -92.5px;
+  margin-top: -77px;
+}
+
+.isOther.loaded .Logo--other {
+  display: none;
+}
+
+.isTBC .Logo--tbc {
+  right: 50%;
+  margin-right: -75px;
+  margin-top: -75px;
+}
+
+.isTBC .Logo--other {
+  width: 100px;
+  height: 81px;
+  margin-top: -40.5px;
+  right: none;
+  left: 46px;
+}
+
+.Logo--other {
+  width: 185px;
+  height: 154px;
+  margin-top: -77px;
+  right: none;
+  left: 113px;
+}
+
+.Logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.Background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  overflow: hidden;
+}
+
+.Background div {
+  position: absolute;
+  -webkit-backface-visibility: hidden !important;
+          backface-visibility: hidden !important;
+  transform: rotate(45deg) translateZ(0) scale(1, 1);
+}
+
+.Background-1 {
+  width: 40vw;
+  height: 40vw;
+  right: -19vw;
+  top: 50%;
+  margin-top: -20vw;
+  background: #42c4f3;
+  z-index: 11;
+  animation: move-1 7s infinite;
+}
+
+.Background-2 {
+  width: 60vw;
+  height: 60vw;
+  right: -29vw;
+  top: 50%;
+  margin-top: -30vw;
+  background: #30bff3;
+  z-index: 10;
+  animation: move-2 7s infinite;
+}
+
+.Background-3 {
+  width: 80vw;
+  height: 80vw;
+  right: -39vw;
+  top: 50%;
+  margin-top: -40vw;
+  background: #1bbaf2;
+  z-index: 9;
+  animation: move-3 7s infinite;
+}
+
+.Background-4 {
+  width: 100vw;
+  height: 100vw;
+  right: -49vw;
+  top: 50%;
+  margin-top: -50vw;
+  background: #08b6f1;
+  z-index: 8;
+  animation: move-4 7s infinite;
+}
+
+.left .Background-1 {
+  right: auto;
+  left: -19vw;
+  background: #fd0000 !important;
+  animation: move-1 7s infinite;
+}
+
+.left .Background-2 {
+  right: auto;
+  left: -29vw;
+  background: #d60000 !important;
+  animation: move-2 7s infinite;
+}
+
+.left .Background-3 {
+  right: auto;
+  left: -39vw;
+  background: #ae0000 !important;
+  animation: move-3 7s infinite;
+}
+
+.left .Background-4 {
+  right: auto;
+  left: -49vw;
+  background: #8b0000 !important;
+  animation: move-4 7s infinite;
+}
+
+@keyframes move-1 {
+  0% {
+    opacity: 0.5;
+  }
+  20%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes move-2 {
+  0%, 20% {
+    opacity: 0.5;
+  }
+  40%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes move-3 {
+  0%, 40% {
+    opacity: 0.5;
+  }
+  60%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes move-4 {
+  0%, 60% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.svg {
+  margin: 24px auto;
+  display: none;
+  z-index: 100;
+  animation: svg-rotate 8000ms linear infinite;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  top: 50%;
+}
+
+.loading .svg {
+  display: block;
+}
+
+circle {
+  fill: transparent;
+  stroke: white;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 0, 131.94689;
+  animation: stroke-dash 2000ms linear infinite, stroke-width 2000ms linear infinite, stroke-color 8000ms steps(4) infinite;
+}
+
+@keyframes svg-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes stroke-width {
+  0%, 100% {
+    stroke-width: 0;
+  }
+  45%, 55% {
+    stroke-width: 4;
+  }
+  50% {
+    stroke-width: 8;
+  }
+}
+
+@keyframes stroke-dash {
+  0% {
+    stroke-dasharray: 0, 131.94689;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 131.94689, 0;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: 131.94689, 131.94689;
+    stroke-dashoffset: -131.94689;
+  }
+}
+
+@keyframes stroke-color {}
+
+@media screen and (max-width: 800px) {
+
+  .Question-option--tbc .Text, .Question-option--other .Text {
+    margin-top: 60px;
+    font-size: 24px;
+  }
+
+  .isOther.loaded .Question-option--other .Text img {
+    height: 30px;
+  }
+
+  .Message {
+    width: 300px;
+    padding: 30px;
+    margin-left: -150px;
+    margin-top: -135px;
+  }
+
+  .Message:before {
+    border-top: 15px solid transparent;
+    border-right: 30px solid #00aeef;
+    border-bottom: 15px solid transparent;
+    left: -29px;
+    top: 30px;
+  }
+
+  .Message:after {
+    border-top: 15px solid transparent;
+    border-left: 30px solid #00aeef;
+    border-bottom: 15px solid transparent;
+    right: -29px;
+    bottom: 30px;
+  }
+
+  .Message p {
+    font-size: 15px;
+  }
+
+  .Message img {
+    margin-top: 15px;
+  }
+
+  .HeaderText p {
+    margin-top: 40px;
+  }
+
+  .HeaderText {
+    font-size: 30px;
+    height: 120px;
+  }
+
+  .HeaderText:after {
+    bottom: -30% !important;
+  }
+
+  .isOther.loading .Logo--other {
+    left: 50%;
+    width: 100px;
+    height: 81px;
+    margin-left: -50px;
+    margin-top: -40.5px;
+  }
+
+  .isTBC .Logo--tbc {
+    right: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: -50px;
+    margin-top: -50px;
+  }
+
+  .Logo {
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    right: 46px;
+  }
+
+  .Logo--other {
+    width: 100px;
+    height: 81px;
+    margin-top: -40.5px;
+    right: none;
+    left: 46px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .Question-option--other .Text {
+    font-size: 18px;
+  }
+
+  .isOther.loaded .Question-option--other .Text img {
+    height: 25px;
+  }
+
+  .isTBC .Question .Question-option--other {
+    -ms-flex: 0 0 95px;
+    flex: 0 0 95px;
+  }
+
+  .isOther .Question .Question-option--tbc {
+    -ms-flex: 0 0 95px;
+    flex: 0 0 95px;
+  }
+
+  .HeaderText p {
+    margin-top: 30px;
+  }
+
+  .HeaderText {
+    font-size: 20px !important;
+    height: 100px;
+  }
+
+  .HeaderText:after {
+
+    /*bottom: -28% !important;*/
+  }
+
+  .isOther .Logo--tbc {
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    right: 23px;
+  }
+
+  .isTBC .Logo--other {
+    width: 50px;
+    height: 40.5px;
+    margin-top: -20.25px;
+    right: none;
+    left: 23px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+
+  .Question-option--other .Text {
+    font-size: 14px;
+  }
+
+  .isOther.loaded .Question-option--other .Text img {
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .Message {
+    width: 270px;
+    padding: 15px;
+    margin-left: -135px;
+  }
+
+  .Message:before {
+    display: none;
+  }
+
+  .Message:after {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 380px) {
+
+  .Message {
+    width: 200px;
+    padding: 5px 10px;
+    margin-left: -100px;
+  }
+
+  .Message p {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+
+  .HeaderText p {
+    margin-top: 50px;
+  }
+
+  .HeaderText {
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+
+  .HeaderText {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 2500px) {
+
+  .HeaderText:after {
+    bottom: -85%;
+  }
+}
+
+@media screen and (max-width: 2200px) {
+
+  .HeaderText:after {
+    bottom: -75%;
+  }
+}
+
+@media screen and (max-width: 1900px) {
+
+  .HeaderText:after {
+    bottom: -65%;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+
+  .HeaderText:after {
+    bottom: -54%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+
+  .HeaderText:after {
+    bottom: -45%;
+  }
+}
